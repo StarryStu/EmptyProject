@@ -1,0 +1,14 @@
+C:\Users\BaekNohYeon\source\repos\EmptyServer\EmptyServer\bin\Debug\EmptyServer.exe.config
+C:\Users\BaekNohYeon\source\repos\EmptyServer\EmptyServer\bin\Debug\EmptyServer.exe
+C:\Users\BaekNohYeon\source\repos\EmptyServer\EmptyServer\bin\Debug\EmptyServer.pdb
+C:\Users\BaekNohYeon\source\repos\EmptyServer\EmptyServer\obj\Debug\EmptyServer.csprojResolveAssemblyReference.cache
+C:\Users\BaekNohYeon\source\repos\EmptyServer\EmptyServer\obj\Debug\EmptyServer.csproj.CoreCompileInputs.cache
+C:\Users\BaekNohYeon\source\repos\EmptyServer\EmptyServer\obj\Debug\EmptyServer.exe
+C:\Users\BaekNohYeon\source\repos\EmptyServer\EmptyServer\obj\Debug\EmptyServer.pdb
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\bin\Debug\EmptyServer.exe.config
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\bin\Debug\EmptyServer.exe
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\bin\Debug\EmptyServer.pdb
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.csprojResolveAssemblyReference.cache
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.csproj.CoreCompileInputs.cache
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.exe
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.pdb

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{336D0D16-EC70-495B-87CC-3A6800DA3D8A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>EmptyServer</RootNamespace>
+    <AssemblyName>EmptyServer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EmptyEngine\Debugs.cs" />
+    <Compile Include="EmptyEngine\EventExecute.cs" />
+    <Compile Include="EmptyEngine\IfNotNull.cs" />
+    <Compile Include="EmptyProtocol\BaseProcess.cs" />
+    <Compile Include="EmptyProtocol\DummyPacket.cs" />
+    <Compile Include="EmptyProtocol\EmptyPacket.cs" />
+    <Compile Include="EmptyProtocol\EmptyProtocol.cs" />
+    <Compile Include="EmptyProtocol\TestPacket.cs" />
+    <Compile Include="EmptyServer\EmptyProtocolEvent.cs" />
+    <Compile Include="EmptyProtocol\LoginPacket.cs" />
+    <Compile Include="EmptyServer\DummyProcess.cs" />
+    <Compile Include="EmptyServer\EmptyServerMain.cs" />
+    <Compile Include="EmptyServer\LoginProcess.cs" />
+    <Compile Include="FlatBuffers\ByteBuffer.cs" />
+    <Compile Include="FlatBuffers\FlatBufferBuilder.cs" />
+    <Compile Include="FlatBuffers\FlatBufferConstants.cs" />
+    <Compile Include="FlatBuffers\IFlatbufferObject.cs" />
+    <Compile Include="FlatBuffers\Offset.cs" />
+    <Compile Include="FlatBuffers\Properties\AssemblyInfo.cs" />
+    <Compile Include="FlatBuffers\Struct.cs" />
+    <Compile Include="FlatBuffers\Table.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="FlatBuffers\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="FlatBuffers\obj\Debug\FlatBuffers.csproj.CoreCompileInputs.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FlatBuffers\FlatBuffers.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FlatBuffers\.vs\FlatBuffers\v15\" />
+    <Folder Include="FlatBuffers\bin\Debug\" />
+    <Folder Include="FlatBuffers\obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

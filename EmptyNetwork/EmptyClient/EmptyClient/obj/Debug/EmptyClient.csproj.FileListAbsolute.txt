@@ -1,0 +1,12 @@
+c:\users\baeknohyeon\source\repos\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe.config
+c:\users\baeknohyeon\source\repos\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe
+c:\users\baeknohyeon\source\repos\EmptyClient\EmptyClient\bin\Debug\EmptyClient.pdb
+c:\users\baeknohyeon\source\repos\EmptyClient\EmptyClient\obj\Debug\EmptyClient.csproj.CoreCompileInputs.cache
+c:\users\baeknohyeon\source\repos\EmptyClient\EmptyClient\obj\Debug\EmptyClient.exe
+c:\users\baeknohyeon\source\repos\EmptyClient\EmptyClient\obj\Debug\EmptyClient.pdb
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug\EmptyClient.csproj.CoreCompileInputs.cache
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug\EmptyClient.exe
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug\EmptyClient.pdb
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe.config
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe
+C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.pdb
