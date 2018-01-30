@@ -45,6 +45,9 @@ namespace EmptyServer
                 byte[] data = lightObject.Serialize();
 
                 LightObject coveredObject = LightObject.Deserialize(data);
+
+                coveredObject.GetInt(1);
+
                 Debugs.Log(coveredObject);
             }
             catch(Exception e)

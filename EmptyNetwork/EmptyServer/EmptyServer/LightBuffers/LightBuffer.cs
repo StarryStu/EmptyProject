@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace LightBuffers
 {
@@ -80,7 +81,7 @@ namespace LightBuffers
             else
                 dataDic.Add(key, data);
         }
-
+        #region Put
         public void PutInt(byte key, int value)
         {
             AddLightData(key, new LightInt(key, value));
@@ -89,6 +90,27 @@ namespace LightBuffers
         public void PutObject(byte key, LightObject obj)
         {
             AddLightData(key, obj);
+        }
+        #endregion
+        #region Get
+        public int GetInt(byte key)
+        {
+            if (!ContainsKey(key))
+                return default(int);
+            return ((LightInt)dataDic[key]).Value;
+        }
+
+        public LightObject GetObject(byte key)
+        {
+            if (!ContainsKey(key))
+                return default(LightObject);
+            return ((LightObject)dataDic[key]);
+        }
+        #endregion
+
+        public bool ContainsKey(byte key)
+        {
+            return dataDic.ContainsKey(key);
         }
 
         public byte[] Serialize()
@@ -151,13 +173,28 @@ namespace LightBuffers
             }
             return data;
         }
-        
+
+        public string ToString(int parentCount)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(string.Format("[{0}] key:{1}, count:{2}", GetDataType().ToString(), key, dataQueue.Count));
+            builder.AppendLine();
+            foreach (ILightData data in dataQueue)
+            {
+                for (int i = 0; i < parentCount; i++)
+                    builder.Append("\t");
+                builder.AppendLine(data.ToString(parentCount+1));
+            }
+            return builder.ToString();
+        }
     }
 
     public struct LightInt : ILightData
     {
         private byte key;
         private int value;
+
+        public int Value { get => value; set => this.value = value; }
 
         public LightInt(byte key, int value)
         {
@@ -192,6 +229,12 @@ namespace LightBuffers
         {
             return new LightInt(buffer.ReadByte(), buffer.ReadInt());
         }
+
+        public string ToString(int parentCount)
+        {
+            StringBuilder builder = new StringBuilder();
+            return string.Format("[{0}] key:{1}, value:{2}", GetDataType().ToString(),key, value);
+        }
     }
 
     public interface ILightData
@@ -199,6 +242,7 @@ namespace LightBuffers
         byte[] Serialize();
         LightDataType GetDataType();
         int GetByteSize();
+        string ToString(int parentCount);
     }
 
     public enum LightDataType
