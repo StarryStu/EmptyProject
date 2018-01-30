@@ -49,9 +49,9 @@
     <Compile Include="EmptyProtocol\DummyPacket.cs" />
     <Compile Include="EmptyProtocol\EmptyPacket.cs" />
     <Compile Include="EmptyProtocol\EmptyProtocol.cs" />
+    <Compile Include="EmptyProtocol\LoginPacket.cs" />
     <Compile Include="EmptyProtocol\TestPacket.cs" />
     <Compile Include="EmptyServer\EmptyProtocolEvent.cs" />
-    <Compile Include="EmptyProtocol\LoginPacket.cs" />
     <Compile Include="EmptyServer\DummyProcess.cs" />
     <Compile Include="EmptyServer\EmptyServerMain.cs" />
     <Compile Include="EmptyServer\LoginProcess.cs" />
@@ -59,8 +59,8 @@
     <Compile Include="FlatBuffers\FlatBufferBuilder.cs" />
     <Compile Include="FlatBuffers\FlatBufferConstants.cs" />
     <Compile Include="FlatBuffers\IFlatbufferObject.cs" />
+    <Compile Include="FlatBuffers\LightBuffer.cs" />
     <Compile Include="FlatBuffers\Offset.cs" />
-    <Compile Include="FlatBuffers\Properties\AssemblyInfo.cs" />
     <Compile Include="FlatBuffers\Struct.cs" />
     <Compile Include="FlatBuffers\Table.cs" />
     <Compile Include="Program.cs" />
@@ -68,16 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="FlatBuffers\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="FlatBuffers\obj\Debug\FlatBuffers.csproj.CoreCompileInputs.cache" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FlatBuffers\FlatBuffers.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FlatBuffers\.vs\FlatBuffers\v15\" />
-    <Folder Include="FlatBuffers\bin\Debug\" />
-    <Folder Include="FlatBuffers\obj\Debug\TempPE\" />
+    <Folder Include="LightBuffers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

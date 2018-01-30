@@ -12,3 +12,10 @@ C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug
 C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.csproj.CoreCompileInputs.cache
 C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.exe
 C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.pdb
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.csprojResolveAssemblyReference.cache
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.csproj.CoreCompileInputs.cache
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.exe
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyServer\EmptyServer\obj\Debug\EmptyServer.pdb
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyServer\EmptyServer\bin\Debug\EmptyServer.exe.config
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyServer\EmptyServer\bin\Debug\EmptyServer.exe
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyServer\EmptyServer\bin\Debug\EmptyServer.pdb

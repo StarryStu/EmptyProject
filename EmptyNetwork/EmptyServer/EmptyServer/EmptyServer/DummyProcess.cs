@@ -1,15 +1,14 @@
 ﻿using EmptyEngine;
 using EmptyProtocol;
+using FlatBuffers;
 
 namespace EmptyServer
 {
     public class DummyProcess : BaseProcess
     {
-        public override void Process(Packet packet)
+        public override void Process(ByteBuffer packet)
         {
-            DummyPacket data = packet as DummyPacket;
-            if (data == null)
-                return;
+            DummyPacket data = new DummyPacket(packet);
 
             Debugs.Log(data);
         }

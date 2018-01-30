@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlatBuffers;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -9,8 +10,9 @@ namespace EmptyProtocol
     [Serializable]
     public abstract class Packet
     {
-        protected int seq;
-        protected E_PROTOCOL_TYPE eProtocolType;
+        //protected LightBuffer builder;
+        public int seq;
+        public E_PROTOCOL_TYPE eProtocolType;
 
         public Packet()
         {
@@ -31,43 +33,30 @@ namespace EmptyProtocol
 
         public byte[] Serialize()
         {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                IFormatter br = new BinaryFormatter();
-                br.Serialize(ms, this);
-                return ms.ToArray();
-            }
+            //builder = new ByteBuffer(new byte[32]);
+            //builder.PutInt(0, 1);
+            //builder.PutInt(0, 1);
+            //return builder.DataBuffer.Data;
+            return null;
         }
 
-        public static Packet Deserialize(byte[] data)
+        private int GetBufferObjectCount()
         {
-            Packet packet = null;
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                BinaryFormatter br = new BinaryFormatter();
-                br.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
-                packet = (br.Deserialize(ms) as Packet);
-            }
-            return packet;
+            return 5 + GetFlatBufferObjectCount();
         }
 
-        sealed class AllowAllAssemblyVersionsDeserializationBinder : System.Runtime.Serialization.SerializationBinder
+        protected abstract int GetFlatBufferObjectCount();
+        protected abstract void AddFlatBufferObjects();
+        protected virtual void Deserialize(ByteBuffer byteBuffer)
         {
-            public override Type BindToType(string assemblyName, string typeName)
-            {
-                Type typeToDeserialize = null;
+            int offset = 24;
+            seq = byteBuffer.GetInt(offset+0);
+            eProtocolType = (E_PROTOCOL_TYPE) byteBuffer.GetInt(offset+1);
+        }
 
-                String currentAssembly = Assembly.GetExecutingAssembly().FullName;
-
-                // In this case we are always using the current assembly
-                assemblyName = currentAssembly;
-
-                // Get the type using the typeName and assemblyName
-                typeToDeserialize = Type.GetType(String.Format("{0}, {1}",
-                    typeName, assemblyName));
-
-                return typeToDeserialize;
-            }
+        public static ByteBuffer Deserialize(byte[] data)
+        {
+            return new ByteBuffer(data);
         }
     }
 }

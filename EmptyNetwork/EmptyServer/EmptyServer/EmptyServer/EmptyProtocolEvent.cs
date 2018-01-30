@@ -1,5 +1,6 @@
 ﻿using EmptyEngine;
 using EmptyServer;
+using FlatBuffers;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ namespace EmptyProtocol
         private void Init()
         {
             AddProtocol(new Protocol(E_PROTOCOL_TYPE.Dummy, new DummyProcess()));
-            AddProtocol(new Protocol(E_PROTOCOL_TYPE.Login, new LoginProcess()));
+            //AddProtocol(new Protocol(E_PROTOCOL_TYPE.Login, new LoginProcess()));
         }
 
         private void AddProtocol(Protocol protocol)
@@ -37,8 +38,10 @@ namespace EmptyProtocol
 
         private void FindProtocol(byte[] data)
         {
-            Packet packet = Packet.Deserialize(data);
-            Protocol targetProtocol = FindProtocol(packet.GetProtocolType());
+            ByteBuffer packet = Packet.Deserialize(data);
+            int a = packet.GetInt(28);
+            E_PROTOCOL_TYPE protocolType = (E_PROTOCOL_TYPE)a;
+            Protocol targetProtocol = FindProtocol(protocolType);
             if (targetProtocol == null)
             {
                 Debugs.Log("[EmptyProtocol] 해당 프로토콜을 찾을 수 없습니다.");

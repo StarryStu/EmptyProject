@@ -1,5 +1,6 @@
 ﻿using EmptyEngine;
 using EmptyProtocol;
+using LightBuffers;
 using System;
 using System.IO;
 using System.Net;
@@ -33,36 +34,18 @@ namespace EmptyServer
         {
             try
             {
-                TestPacket packet = new TestPacket();
-                packet.seq = 1;
+                LightObject lightObject = new LightObject();
 
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    IFormatter br = new BinaryFormatter();
-                    br.Serialize(ms, packet);
-                    savedData = ms.ToArray();
-                }
+                LightObject dummy = new LightObject();
+                dummy.PutInt(1, 124);
 
-                Debugs.Log(savedData);
+                lightObject.PutInt(1, 123);
+                lightObject.PutObject(2, dummy);
 
-                TestPacket coveredPacket = null;
-                using (MemoryStream ms = new MemoryStream(savedData))
-                {
-                    IFormatter br = new BinaryFormatter();
-                    coveredPacket = (br.Deserialize(ms) as TestPacket);
-                }
+                byte[] data = lightObject.Serialize();
 
-                Debugs.Log(coveredPacket);
-
-                //DummyPacket packet = new DummyPacket();
-                //Debugs.Log(packet);
-
-                //savedData = packet.Serialize();
-
-                //DummyPacket coverdPacket = Packet.Deserialize(savedData) as DummyPacket;
-                //Debugs.Log(coverdPacket);
-
-                //serverProtocolEvent.Receieve(savedData);
+                LightObject coveredObject = LightObject.Deserialize(data);
+                Debugs.Log(coveredObject);
             }
             catch(Exception e)
             {
@@ -131,80 +114,71 @@ namespace EmptyServer
             {
                 byte[] data = new byte[bytesRead];
                 System.Buffer.BlockCopy(state.buffer, 0, data, 0, bytesRead);
-
-                //for (int i = 0; i < savedData.Length; i++)
-                //{
-                //    if (savedData[i] != data[i])
-                //    {
-                //        Debugs.Log("Data 가 다릅니다! index:", i);
-                //    }
-                //}
-                //serverProtocolEvent.Receieve(savedData);
                 serverProtocolEvent.Receieve(data);
 
-                // There  might be more data, so store the data received so far.
-                state.sb.Append(Encoding.ASCII.GetString(
-                    state.buffer, 0, bytesRead));
+                //// There  might be more data, so store the data received so far.
+                //state.sb.Append(Encoding.ASCII.GetString(
+                //    state.buffer, 0, bytesRead));
 
-                // Check for end-of-file tag. If it is not there, read 
-                // more data.
-                content = state.sb.ToString();
-                if (content.IndexOf("<EOF>") > -1)
-                {
-                    // All the data has been read from the 
-                    // client. Display it on the console.
-                    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-                        content.Length, content);
-                    // Echo the data back to the client.
-                    Send(handler, content);
-                }
-                else
-                {
-                    // Not all data received. Get more.
-                    handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                    new AsyncCallback(ReadCallback), state);
-                }
+                //// Check for end-of-file tag. If it is not there, read 
+                //// more data.
+                //content = state.sb.ToString();
+                //if (content.IndexOf("<EOF>") > -1)
+                //{
+                //    // All the data has been read from the 
+                //    // client. Display it on the console.
+                //    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
+                //        content.Length, content);
+                //    // Echo the data back to the client.
+                //    Send(handler, content);
+                //}
+                //else
+                //{
+                //    // Not all data received. Get more.
+                //    handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+                //    new AsyncCallback(ReadCallback), state);
+                //}
             }
         }
 
-        private void Send(Socket handler, String data)
-        {
-            // Convert the string data to byte data using ASCII encoding.
-            byte[] byteData = Encoding.ASCII.GetBytes(data);
+        //private void Send(Socket handler, String data)
+        //{
+        //    // Convert the string data to byte data using ASCII encoding.
+        //    byte[] byteData = Encoding.ASCII.GetBytes(data);
 
-            // Begin sending the data to the remote device.
-            handler.BeginSend(byteData, 0, byteData.Length, 0,
-                new AsyncCallback(SendCallback), handler);
-        }
+        //    // Begin sending the data to the remote device.
+        //    handler.BeginSend(byteData, 0, byteData.Length, 0,
+        //        new AsyncCallback(SendCallback), handler);
+        //}
 
-        private void SendCallback(IAsyncResult ar)
-        {
-            try
-            {
-                // Retrieve the socket from the state object.
-                Socket handler = (Socket)ar.AsyncState;
+        //private void SendCallback(IAsyncResult ar)
+        //{
+        //    try
+        //    {
+        //        // Retrieve the socket from the state object.
+        //        Socket handler = (Socket)ar.AsyncState;
 
-                // Complete sending the data to the remote device.
-                int bytesSent = handler.EndSend(ar);
-                Console.WriteLine("Sent {0} bytes to client.", bytesSent);
+        //        // Complete sending the data to the remote device.
+        //        int bytesSent = handler.EndSend(ar);
+        //        Console.WriteLine("Sent {0} bytes to client.", bytesSent);
 
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
+        //        handler.Shutdown(SocketShutdown.Both);
+        //        handler.Close();
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.ToString());
+        //    }
+        //}
 
         public static int Main(String[] args)
         {
             try
             {
                 EmptyServerMain server = new EmptyServerMain((Dns.GetHostEntry(Dns.GetHostName())).IfNotNull(ipHostInfo => { return ipHostInfo.AddressList[1]; }), 11000);
-                //server.TestStart();
-                server.Start();
+                server.TestStart();
+                //server.Start();
             }
             catch (Exception e)
             {

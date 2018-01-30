@@ -1,5 +1,4 @@
-﻿using FlatBuffers;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -9,10 +8,10 @@ namespace EmptyProtocol
     {
         public virtual void StartProcess(byte[] data)
         {
-            ByteBuffer packet = Packet.Deserialize(data);
+            Packet packet = Packet.Deserialize(data);
             Process(packet);
         }
 
-        public abstract void Process(ByteBuffer packet);
+        public abstract void Process(Packet packet);
     }
 }

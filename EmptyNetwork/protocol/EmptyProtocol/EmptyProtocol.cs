@@ -1,6 +1,4 @@
-﻿using FlatBuffers;
-
-namespace EmptyProtocol
+﻿namespace EmptyProtocol
 {
     public enum E_PROTOCOL_TYPE
     {
@@ -19,7 +17,7 @@ namespace EmptyProtocol
             this.process = process;
         }
 
-        public void Process(ByteBuffer packet)
+        public void Process(Packet packet)
         {
             process.Process(packet);
         }
