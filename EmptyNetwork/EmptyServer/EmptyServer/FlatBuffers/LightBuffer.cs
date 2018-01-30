@@ -47,6 +47,8 @@ namespace LightBuffers
     public class LightObject : ILightData
     {
         private Queue<ILightData> dataQueue = new Queue<ILightData>();
+        public Dictionary<byte,ILightData> dataDic = new Dictionary<byte, ILightData>();
+
         public byte key;
 
         public LightObject()
@@ -69,14 +71,24 @@ namespace LightBuffers
             return LightDataType.Object;
         }
 
+        private void AddLightData(byte key, ILightData data)
+        {
+            dataQueue.Enqueue(data);
+
+            if (dataDic.ContainsKey(key))
+                dataDic[key] = data;
+            else
+                dataDic.Add(key, data);
+        }
+
         public void PutInt(byte key, int value)
         {
-            dataQueue.Enqueue((new LightInt(key, value)));
+            AddLightData(key, new LightInt(key, value));
         }
 
         public void PutObject(byte key, LightObject obj)
         {
-            dataQueue.Enqueue(obj);
+            AddLightData(key, obj);
         }
 
         public byte[] Serialize()
