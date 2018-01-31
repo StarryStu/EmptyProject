@@ -1,4 +1,5 @@
 ﻿using FlatBuffers;
+using LightBuffers;
 using System;
 
 namespace EmptyProtocol
@@ -11,9 +12,9 @@ namespace EmptyProtocol
 
         }
 
-        public DummyPacket(ByteBuffer buffer) : base()
+        public DummyPacket(LightObject receiveObject) : base()
         { 
-            Deserialize(buffer);
+            Deserialize(receiveObject);
         }
 
         public override E_PROTOCOL_TYPE GetProtocolType()
@@ -21,14 +22,14 @@ namespace EmptyProtocol
             return E_PROTOCOL_TYPE.Dummy;
         }
 
-        protected override void AddFlatBufferObjects()
+        protected override void WriteLightObject()
         {
 
         }
 
-        protected override int GetFlatBufferObjectCount()
+        protected override void ReadLightObject()
         {
-            return 0;
+
         }
     }
 }

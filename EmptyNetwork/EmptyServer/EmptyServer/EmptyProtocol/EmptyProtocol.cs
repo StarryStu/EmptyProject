@@ -1,4 +1,5 @@
 ﻿using FlatBuffers;
+using LightBuffers;
 
 namespace EmptyProtocol
 {
@@ -19,9 +20,9 @@ namespace EmptyProtocol
             this.process = process;
         }
 
-        public void Process(ByteBuffer packet)
+        public void Process(LightObject lightObj)
         {
-            process.Process(packet);
+            process.Process(lightObj);
         }
     }
 

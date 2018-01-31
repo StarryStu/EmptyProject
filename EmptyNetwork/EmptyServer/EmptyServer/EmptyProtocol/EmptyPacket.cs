@@ -1,4 +1,5 @@
 ﻿using FlatBuffers;
+using LightBuffers;
 using System;
 using System.IO;
 using System.Reflection;
@@ -10,7 +11,6 @@ namespace EmptyProtocol
     [Serializable]
     public abstract class Packet
     {
-        //protected LightBuffer builder;
         public int seq;
         public E_PROTOCOL_TYPE eProtocolType;
 
@@ -31,32 +31,22 @@ namespace EmptyProtocol
             return string.Format("[Packet]\n[seq : {0}]\n[protocol : {1}]", seq.ToString(), eProtocolType.ToString());
         }
 
-        public byte[] Serialize()
+        public LightObject Serialize()
         {
-            //builder = new ByteBuffer(new byte[32]);
-            //builder.PutInt(0, 1);
-            //builder.PutInt(0, 1);
-            //return builder.DataBuffer.Data;
-            return null;
+            LightObject sendObj = new LightObject();
+            sendObj.PutInt(0, seq);
+            sendObj.PutInt(1, (int)eProtocolType);
+            WriteLightObject();
+            return sendObj;
         }
+        protected abstract void WriteLightObject();
+        protected abstract void ReadLightObject();
 
-        private int GetBufferObjectCount()
+        protected virtual void Deserialize(LightObject receiveObject)
         {
-            return 5 + GetFlatBufferObjectCount();
-        }
-
-        protected abstract int GetFlatBufferObjectCount();
-        protected abstract void AddFlatBufferObjects();
-        protected virtual void Deserialize(ByteBuffer byteBuffer)
-        {
-            int offset = 24;
-            seq = byteBuffer.GetInt(offset+0);
-            eProtocolType = (E_PROTOCOL_TYPE) byteBuffer.GetInt(offset+1);
-        }
-
-        public static ByteBuffer Deserialize(byte[] data)
-        {
-            return new ByteBuffer(data);
+            seq = receiveObject.GetInt(0);
+            eProtocolType = (E_PROTOCOL_TYPE)receiveObject.GetInt(1);
+            ReadLightObject();
         }
     }
 }

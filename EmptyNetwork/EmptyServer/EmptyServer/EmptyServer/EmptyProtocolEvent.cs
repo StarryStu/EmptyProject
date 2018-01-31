@@ -1,6 +1,7 @@
 ﻿using EmptyEngine;
 using EmptyServer;
 using FlatBuffers;
+using LightBuffers;
 using System;
 using System.Collections.Generic;
 
@@ -38,16 +39,15 @@ namespace EmptyProtocol
 
         private void FindProtocol(byte[] data)
         {
-            ByteBuffer packet = Packet.Deserialize(data);
-            int a = packet.GetInt(28);
-            E_PROTOCOL_TYPE protocolType = (E_PROTOCOL_TYPE)a;
+            LightObject lightObj = LightObject.Deserialize(data);
+            E_PROTOCOL_TYPE protocolType = (E_PROTOCOL_TYPE)lightObj.GetInt(0);
             Protocol targetProtocol = FindProtocol(protocolType);
             if (targetProtocol == null)
             {
                 Debugs.Log("[EmptyProtocol] 해당 프로토콜을 찾을 수 없습니다.");
                 return;
             }
-            targetProtocol.Process(packet);
+            targetProtocol.Process(lightObj);
         }
 
         private Protocol FindProtocol(E_PROTOCOL_TYPE eProtocolType)

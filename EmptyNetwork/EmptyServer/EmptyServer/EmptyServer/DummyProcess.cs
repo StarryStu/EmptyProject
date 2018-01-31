@@ -1,16 +1,16 @@
 ﻿using EmptyEngine;
 using EmptyProtocol;
 using FlatBuffers;
+using LightBuffers;
 
 namespace EmptyServer
 {
     public class DummyProcess : BaseProcess
     {
-        public override void Process(ByteBuffer packet)
+        public override void Process(LightObject lightObj)
         {
-            DummyPacket data = new DummyPacket(packet);
-
-            Debugs.Log(data);
+            DummyPacket packet = new DummyPacket(lightObj);
+            Debugs.Log(lightObj);
         }
     }
 }

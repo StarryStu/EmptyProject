@@ -151,44 +151,48 @@ namespace EmptyServer
             }
         }
 
-        //private void Send(Socket handler, String data)
-        //{
-        //    // Convert the string data to byte data using ASCII encoding.
-        //    byte[] byteData = Encoding.ASCII.GetBytes(data);
+        private void Send(Socket handler, Packet packet)
+        {
+            Send(handler, packet.Serialize());
+        }
 
-        //    // Begin sending the data to the remote device.
-        //    handler.BeginSend(byteData, 0, byteData.Length, 0,
-        //        new AsyncCallback(SendCallback), handler);
-        //}
+        private void Send(Socket handler, LightObject data)
+        {
+            // Convert the string data to byte data using ASCII encoding.
+            byte[] byteData = data.Serialize();
 
-        //private void SendCallback(IAsyncResult ar)
-        //{
-        //    try
-        //    {
-        //        // Retrieve the socket from the state object.
-        //        Socket handler = (Socket)ar.AsyncState;
+            // Begin sending the data to the remote device.
+            handler.BeginSend(byteData, 0, byteData.Length, 0,
+                new AsyncCallback(SendCallback), handler);
+        }
 
-        //        // Complete sending the data to the remote device.
-        //        int bytesSent = handler.EndSend(ar);
-        //        Console.WriteLine("Sent {0} bytes to client.", bytesSent);
+        private void SendCallback(IAsyncResult ar)
+        {
+            try
+            {
+                // Retrieve the socket from the state object.
+                Socket handler = (Socket)ar.AsyncState;
 
-        //        handler.Shutdown(SocketShutdown.Both);
-        //        handler.Close();
+                // Complete sending the data to the remote device.
+                int bytesSent = handler.EndSend(ar);
+                Console.WriteLine("Sent {0} bytes to client.", bytesSent);
 
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.ToString());
-        //    }
-        //}
+                handler.Shutdown(SocketShutdown.Both);
+                handler.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
 
         public static int Main(String[] args)
         {
             try
             {
                 EmptyServerMain server = new EmptyServerMain((Dns.GetHostEntry(Dns.GetHostName())).IfNotNull(ipHostInfo => { return ipHostInfo.AddressList[1]; }), 11000);
-                server.TestStart();
-                //server.Start();
+                server.Start();
             }
             catch (Exception e)
             {
