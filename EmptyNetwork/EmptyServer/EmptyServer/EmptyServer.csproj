@@ -59,10 +59,14 @@
     <Compile Include="FlatBuffers\FlatBufferBuilder.cs" />
     <Compile Include="FlatBuffers\FlatBufferConstants.cs" />
     <Compile Include="FlatBuffers\IFlatbufferObject.cs" />
+    <Compile Include="LightBuffers\LightData.cs" />
     <Compile Include="LightBuffers\LightBuffer.cs" />
     <Compile Include="FlatBuffers\Offset.cs" />
     <Compile Include="FlatBuffers\Struct.cs" />
     <Compile Include="FlatBuffers\Table.cs" />
+    <Compile Include="LightBuffers\LightInt.cs" />
+    <Compile Include="LightBuffers\LightObject.cs" />
+    <Compile Include="LightBuffers\LightShort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

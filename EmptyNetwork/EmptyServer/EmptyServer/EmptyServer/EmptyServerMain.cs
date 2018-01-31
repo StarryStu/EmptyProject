@@ -37,10 +37,17 @@ namespace EmptyServer
                 LightObject lightObject = new LightObject();
 
                 LightObject dummy = new LightObject();
-                dummy.PutInt(1, 124);
+                dummy.PutInt(1, 1000);
+                dummy.PutInt(2, 10);
 
-                lightObject.PutInt(1, 123);
+                LightObject dummy2 = new LightObject();
+                dummy2.PutInt(1, 1000);
+                dummy2.PutInt(2, 10);
+
+                dummy.PutObject(1, dummy2);
+
                 lightObject.PutObject(2, dummy);
+                lightObject.PutObject(3, dummy2);
 
                 byte[] data = lightObject.Serialize();
 
