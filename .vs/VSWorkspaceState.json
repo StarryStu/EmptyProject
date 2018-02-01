@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EmptyNetwork",
+    "\\EmptyNetwork\\EmptyClient\\EmptyClient",
+    "\\EmptyNetwork\\EmptyClient\\EmptyClient\\Properties",
+    "\\EmptyNetwork\\EmptyServer",
+    "\\EmptyNetwork\\EmptyServer\\EmptyServer",
+    "\\EmptyNetwork\\EmptyServer\\EmptyServer\\EmptyServer"
+  ],
+  "SelectedNode": "\\EmptyNetwork\\EmptyClient",
+  "PreviewInSolutionExplorer": false
+}

@@ -10,3 +10,13 @@ C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug
 C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe.config
 C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe
 C:\Users\BaekNohYeon\source\repos\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.pdb
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug\EmptyClient.csprojResolveAssemblyReference.cache
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug\EmptyClient.csproj.CoreCompileInputs.cache
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug\EmptyClient.exe
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\obj\Debug\EmptyClient.pdb
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe.config
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.exe
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyClient.pdb
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyServer.exe
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyServer.pdb
+C:\Users\BaekNohYeon\Documents\GitHub\EmptyProject\EmptyNetwork\EmptyClient\EmptyClient\bin\Debug\EmptyServer.exe.config

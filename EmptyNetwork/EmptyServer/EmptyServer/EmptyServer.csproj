@@ -42,32 +42,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmptyEngine\Debugs.cs" />
-    <Compile Include="EmptyEngine\EventExecute.cs" />
-    <Compile Include="EmptyEngine\IfNotNull.cs" />
-    <Compile Include="EmptyProtocol\BaseProcess.cs" />
-    <Compile Include="EmptyProtocol\DummyPacket.cs" />
-    <Compile Include="EmptyProtocol\EmptyPacket.cs" />
-    <Compile Include="EmptyProtocol\EmptyProtocol.cs" />
-    <Compile Include="EmptyProtocol\LoginPacket.cs" />
-    <Compile Include="EmptyProtocol\TestPacket.cs" />
-    <Compile Include="EmptyServer\EmptyProtocolEvent.cs" />
     <Compile Include="EmptyServer\DummyProcess.cs" />
-    <Compile Include="EmptyServer\EmptyServerMain.cs" />
+    <Compile Include="Library\EmptyEngine\Debugs.cs" />
+    <Compile Include="Library\EmptyEngine\EventExecute.cs" />
+    <Compile Include="Library\EmptyEngine\IfNotNull.cs" />
+    <Compile Include="Library\EmptyProtocol\BaseProcess.cs" />
+    <Compile Include="Library\EmptyProtocol\DummyPacket.cs" />
+    <Compile Include="Library\EmptyProtocol\EmptyPacket.cs" />
+    <Compile Include="Library\EmptyProtocol\EmptyProtocol.cs" />
+    <Compile Include="Library\EmptyProtocol\LoginPacket.cs" />
+    <Compile Include="Library\EmptyProtocol\PacketHandler.cs" />
+    <Compile Include="Library\EmptyProtocol\TestPacket.cs" />
+    <Compile Include="Library\FlatBuffers\ByteBuffer.cs" />
+    <Compile Include="Library\FlatBuffers\FlatBufferBuilder.cs" />
+    <Compile Include="Library\FlatBuffers\FlatBufferConstants.cs" />
+    <Compile Include="Library\FlatBuffers\IFlatbufferObject.cs" />
+    <Compile Include="Library\FlatBuffers\Offset.cs" />
+    <Compile Include="Library\FlatBuffers\Struct.cs" />
+    <Compile Include="Library\FlatBuffers\Table.cs" />
+    <Compile Include="Library\LightBuffers\LightBuffer.cs" />
+    <Compile Include="Library\LightBuffers\LightData.cs" />
+    <Compile Include="Library\LightBuffers\LightInt.cs" />
+    <Compile Include="Library\LightBuffers\LightObject.cs" />
+    <Compile Include="Library\LightBuffers\LightShort.cs" />
+    <Compile Include="Library\Network\NetworkManager.cs" />
     <Compile Include="EmptyServer\LoginProcess.cs" />
-    <Compile Include="FlatBuffers\ByteBuffer.cs" />
-    <Compile Include="FlatBuffers\FlatBufferBuilder.cs" />
-    <Compile Include="FlatBuffers\FlatBufferConstants.cs" />
-    <Compile Include="FlatBuffers\IFlatbufferObject.cs" />
-    <Compile Include="LightBuffers\LightData.cs" />
-    <Compile Include="LightBuffers\LightBuffer.cs" />
-    <Compile Include="FlatBuffers\Offset.cs" />
-    <Compile Include="FlatBuffers\Struct.cs" />
-    <Compile Include="FlatBuffers\Table.cs" />
-    <Compile Include="LightBuffers\LightInt.cs" />
-    <Compile Include="LightBuffers\LightObject.cs" />
-    <Compile Include="LightBuffers\LightShort.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="EmptyServer\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
