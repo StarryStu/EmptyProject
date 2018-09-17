@@ -40,6 +40,7 @@ namespace EmptyProtocol
         private void FindProtocol(byte[] data)
         {
             LightObject lightObj = LightObject.Deserialize(data);
+            lightObj.PrintDump();
             E_PROTOCOL_TYPE protocolType = (E_PROTOCOL_TYPE)lightObj.GetInt(1);
             Protocol targetProtocol = FindProtocol(protocolType);
             if (targetProtocol == null)

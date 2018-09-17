@@ -1,4 +1,5 @@
 ﻿using EmptyEngine;
+using EmptyProtocol;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -157,6 +158,7 @@ namespace LightBuffers
 
         public ILightData PrintDump()
         {
+            Debugs.Log(string.Format("[Packet]\n[seq : {0}]\n[protocol : {1}]", GetInt(0).ToString(), ((E_PROTOCOL_TYPE)GetInt(1)).ToString() ));
             Debugs.Log(this.ToString());
             return this;
         }

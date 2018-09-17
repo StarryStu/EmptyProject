@@ -7,16 +7,29 @@ using System.Net.Sockets;
 using System.Threading;
 namespace EmptyServer
 {
+    // State object for reading client data asynchronously
+    public class StateObject
+    {
+        // Client  socket.
+        public Socket workSocket = null;
+        // Size of receive buffer.
+        public const int BufferSize = 1024;
+        // Receive buffer.
+        public byte[] buffer = new byte[BufferSize];
+    }
+
     public class NetworkManager
     {
-        private PacketHandler packetHandler = new PacketHandler();
+        public PacketHandler packetHandler = new PacketHandler();
 
-        private Socket listener;
+        private Socket socket;
         private int port;
         private IPAddress ipAddress;
 
+        private IPEndPoint endPoint;
+
         // Thread signal.
-        public static ManualResetEvent allDone = new ManualResetEvent(false);
+        public ManualResetEvent signal = new ManualResetEvent(false);
 
         public NetworkManager(IPAddress ipAddress, int port)
         {
@@ -57,40 +70,74 @@ namespace EmptyServer
             }
         }
 
-        public void Start()
+        public void Init()
         {
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
-            listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            
-            listener.Bind(localEndPoint);
-            listener.Listen(100);
+            Debugs.Log("[NetworkManager] Init");
+            endPoint = new IPEndPoint(ipAddress, port);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        }
+
+        public void Listen()
+        {
+            Debugs.Log("[NetworkManager] Listen");
+            socket.Bind(endPoint);
+            socket.Listen(100);
 
             while (true)
             {
-                Update();
+                BeginAccept();
             }
         }
 
-        private void Update()
+        public void Connect()
         {
-            // Set the event to nonsignaled state.
-            allDone.Reset();
+            socket.BeginConnect(endPoint,
+                new AsyncCallback(ConnectCallBack), socket);
+            signal.WaitOne();
+        }
 
-            // Start an asynchronous socket to listen for connections.
-            Console.WriteLine("Waiting for a connection...");
-            listener.BeginAccept(
+        private void ConnectCallBack(IAsyncResult ar)
+        {
+            try
+            {
+                // Retrieve the socket from the state object.
+                Socket socket = (Socket)ar.AsyncState;
+
+                // Complete the connection.
+                socket.EndConnect(ar);
+
+                Console.WriteLine("Socket connected to {0}",
+                    socket.RemoteEndPoint.ToString());
+
+                // Signal that the connection has been made.
+                signal.Set();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        private void BeginAccept()
+        {
+            Debugs.Log("[NetworkManager] BeginAccept");
+            // Set the event to nonsignaled state.
+            signal.Reset();
+
+            socket.BeginAccept(
                 new AsyncCallback(AcceptCallback),
-                listener);
+                socket);
 
             // Wait until a connection is made before continuing.
-            allDone.WaitOne();
+            signal.WaitOne();
         }
 
 
         public void AcceptCallback(IAsyncResult ar)
         {
+            Debugs.Log("[NetworkManager] AcceptCallback");
             // Signal the main thread to continue.
-            allDone.Set();
+            signal.Set();
 
             // Get the socket that handles the client request.
             Socket listener = (Socket)ar.AsyncState;
@@ -105,6 +152,7 @@ namespace EmptyServer
 
         public void ReadCallback(IAsyncResult ar)
         {
+            Debugs.Log("[NetworkManager] ReadCallback");
             String content = String.Empty;
 
             // Retrieve the state object and the handler socket
@@ -147,7 +195,7 @@ namespace EmptyServer
 
         public void Send(Packet packet)
         {
-            Send(listener, packet.Serialize());
+            Send(socket, packet.Serialize());
         }
 
         private void Send(Socket handler, LightObject data)
@@ -171,28 +219,14 @@ namespace EmptyServer
                 int bytesSent = handler.EndSend(ar);
                 Console.WriteLine("Sent {0} bytes to client.", bytesSent);
 
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
+                //handler.Shutdown(SocketShutdown.Both);
+                //handler.Close();
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-        }
-
-        public static int Main(String[] args)
-        {
-            try
-            {
-                NetworkManager server = new NetworkManager((Dns.GetHostEntry(Dns.GetHostName())).IfNotNull(ipHostInfo => { return ipHostInfo.AddressList[1]; }), 11000);
-                server.Start();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            return 0;
         }
     }
 }
